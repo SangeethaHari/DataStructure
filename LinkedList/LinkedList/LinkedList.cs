@@ -69,6 +69,7 @@ namespace LinkedList
             Console.WriteLine(tail.value);
         }
         #endregion getTail
+
         //4.
         #region getLength
         public void getLength()
@@ -78,7 +79,7 @@ namespace LinkedList
         #endregion getLength
 
         //5.Append
-        #region Append
+        #region append
         /**
          * Append a item to the LinkedList
          * Base Case
@@ -204,7 +205,7 @@ namespace LinkedList
         }
         #endregion Prepend
 
-        //7.RemoveFirstNode
+        //8.RemoveFirstNode
         #region RemoveFirstNode
         /**
           * 
@@ -241,6 +242,109 @@ namespace LinkedList
 
         }
         #endregion RemoveFirstNode
+
+        //9. Get a Node by a Index
+        #region Get
+        /**
+          * 
+          * Base Case
+          * ------------------------------
+          * 1. index must be within the range
+          * 2. 
+          * -------------------------------
+          * Steps:
+          * -----
+          * 
+          * Big'O
+          * -----
+          *
+          * **/
+        public Node get(int index)
+        {
+            if (index < 0 || index >= length)
+                return null;
+
+            Node temp = head;
+            for (int i = 0; i < index; i++)
+            {
+                temp = temp.next;
+            }
+            return temp;
+        }
+
+        #endregion Get
+
+        //10. set a Node value at index
+        #region set
+        public bool set(int index, int value)
+        {
+            if (index < 0 || index >= length) return false;
+
+            Node temp = get(index);
+            if (temp != null)
+            {
+                temp.value = value;
+            }
+            return true;
+        }
+        #endregion set
+
+        //11. Insert a newNode at given index
+        #region insert
+
+        public bool insert(int index, int value)
+        {
+            if (index < 0 || index >= length) { return false; }
+            if (index == 0)
+            {
+                prepend(value);
+            }
+            else if (index == length)
+            {
+                append(value);
+            }
+            else
+            {
+                Node newNode = new Node(value);
+
+                Node temp = get(index - 1);
+
+                newNode.next = temp.next;
+                temp.next = newNode;
+                length++;
+            }
+            return true;
+        }
+        #endregion insert
+
+        //12. remove a item at given index
+        #region removeatIndex
+
+        public Node remove(int index)
+        {
+            if (index < 0 || index >= length) return null;
+
+            if(index == 0)
+            {
+               return removeFirstNode();
+            }
+            else if(index == length - 1)
+            {
+                return removeLast();
+            }
+            else
+            {
+                Node temp = get(index - 1);
+                temp.next = temp.next.next;
+                length--;
+                return temp;
+
+            }
+               
+
+        }
+        #endregion removeatIndex
+
     }
 
     public class LinkedListDemo
@@ -253,7 +357,6 @@ namespace LinkedList
 
             linkedList.PrintList();
         }
-
 
     }
 }
