@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/LinkedList/.vs
+/.vs
+/LinkedList/LinkedList/bin/Debug/net8.0
+/LinkedList/LinkedList/obj
